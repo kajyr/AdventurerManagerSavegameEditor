@@ -18,22 +18,24 @@
 	function printProperty(name, value, $container) {
 
 		var $li = $('<li />');
-		
+		$container.append($li);
+
 		if (_.isArray(value)) {
-			var $ul = $('ul');
+			var $ul = $('<ul />');
+			$li.append($ul);
 			$ul.append('<h3>' + name + '</h3>')
 			if (value.length > 0) {
 					_.each(value, function(innerValue, innerName) {
 					printProperty(innerName, innerValue, $ul);
 				})
 			}
-			$li.append($ul);
+			
 		} else {
 			$li.text(name+': '+value);
 		}
 
 		
-		$container.append($li);
+		
 	}
 
 	function parseAndPrint(savegame) {
