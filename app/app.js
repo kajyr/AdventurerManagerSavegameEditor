@@ -15,17 +15,38 @@
 		return process.env[(process.platform == 'win32') ? 'USERPROFILE' : 'HOME'];
 	}
 
+	function printProperty(name, value, $container) {
+
+		var $li = $('<li />');
+		
+		if (_.isArray(value)) {
+			var $ul = $('ul');
+			$ul.append('<h3>' + name + '</h3>')
+			if (value.length > 0) {
+					_.each(value, function(innerValue, innerName) {
+					printProperty(innerName, innerValue, $ul);
+				})
+			}
+			$li.append($ul);
+		} else {
+			$li.text(name+': '+value);
+		}
+
+		
+		$container.append($li);
+	}
+
 	function parseAndPrint(savegame) {
 		$main.html('');
 		_.each(savegame, function(section, title) {
 			$main.append('<section id="'+ title +'"></section>');
 			var $section = $('#'+title);
-			$section.append('<h2>' + title + '</h2>');
-			$section.append('<ul/>');
+			$section.append('<h2 class="fold-handler">' + title + '</h2>');
+			$section.append('<ul class="foldable"/>');
 			$ul = $section.find('ul');
 
-			_.each(section, function(property, name) {
-				$ul.append('<li>'+name+': '+property+'</li>');
+			_.each(section, function(value, name) {
+				printProperty(name, value, $ul);
 			})
 		})
 	}
@@ -45,7 +66,15 @@
 			var savegame = JSON.parse(data);
 			parseAndPrint(savegame);
 		});
+	})
 
+	$('body').on('click', '.fold-handler', function(e) {
+		var $foldable = $(e.currentTarget).siblings('.foldable');
+		if ($foldable.is(':visible')) {
+			$foldable.hide();
+		} else {
+			$foldable.show();
+		}
 	})
 
 })();
