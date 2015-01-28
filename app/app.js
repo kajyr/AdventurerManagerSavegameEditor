@@ -7,6 +7,7 @@
 	}
 
 	var fs = require('fs');
+	var _ = require('underscore');
 
 	var $main = $('#main');
 
@@ -16,11 +17,17 @@
 
 	function parseAndPrint(savegame) {
 		$main.html('');
-		for (var key in savegame) {
-			if(savegame.hasOwnProperty(key)){
-				$main.append('<h2>' + key + '</h2>');
-			}
-		}
+		_.each(savegame, function(section, title) {
+			$main.append('<section id="'+ title +'"></section>');
+			var $section = $('#'+title);
+			$section.append('<h2>' + title + '</h2>');
+			$section.append('<ul/>');
+			$ul = $section.find('ul');
+
+			_.each(section, function(property, name) {
+				$ul.append('<li>'+name+': '+property+'</li>');
+			})
+		})
 	}
 
 	$('header button').on('click', function(e) {
