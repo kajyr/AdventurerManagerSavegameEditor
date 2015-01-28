@@ -3,7 +3,7 @@ var coffee = require('gulp-coffee');
 var gutil = require('gulp-util');
 
 gulp.task('coffee', function() {
-  gulp.src('./src/*.coffee')
+  gulp.src('./app/*.coffee')
     .pipe(coffee({bare: true}).on('error', gutil.log))
-    .pipe(gulp.dest('./public/'))
+    .pipe(gulp.dest('./app/'))
 });
