@@ -1,0 +1,20 @@
+{
+  "name": "AdventurerManagerSavegameEditor",
+  "version": "0.0.0",
+  "homepage": "https://github.com/kajyr/AdventurerManagerSavegameEditor",
+  "authors": [
+    "kajyr <carlo.panzi@gmail.com>"
+  ],
+  "license": "MIT",
+  "private": true,
+  "ignore": [
+    "**/.*",
+    "node_modules",
+    "bower_components",
+    "test",
+    "tests"
+  ],
+  "dependencies": {
+    "foundation": "~5.5.1"
+  }
+}
