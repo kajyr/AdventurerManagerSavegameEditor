@@ -7,8 +7,9 @@
 	<meta name="viewport" content="width=device-width, initial-scale=1.0">
 	<link rel="stylesheet" href="css/normalize.css">
 	<link rel="stylesheet" href="css/foundation.css">
+	<script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.4.0-beta.2/angular.min.js"></script>
 </head>
-<body>
+<body fullbleed ng-app="amse">
 	<header>
 		<nav class="top-bar" data-topbar role="navigation">
 			<ul class="title-area">
@@ -17,21 +18,16 @@
 				</li>
 			</ul>
 		</nav>
-		<div>
+		<div ng-controller="loaderController">
 			<p>Load a savegame</p>
-			<button data-slot="1">Slot 1</button>
-			<button data-slot="2">Slot 2</button>
-			<button data-slot="3">Slot 3</button>
+			<button ng-click="load(1)">Slot 1</button>
+			<button ng-click="load(2)">Slot 2</button>
+			<button ng-click="load(3)">Slot 3</button>
 		</div>
 	</header>
 	<div id="main">
 		<p>Select a savegame.</p>
 	</div>
-	<script src="js/jquery.min.js"></script>
-	<script src="js/foundation.min.js"></script>
-	<script>
-		$(document).foundation();
-	</script>
-	<script src="app.js"></script>
+	<script src="js/app.js"></script>
 </body>
 </html>
