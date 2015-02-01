@@ -22,6 +22,7 @@
     "gulp-coffee": "^2.2.0",
     "gulp-util": "^3.0.2",
     "gulp-compass": "^2.0.3",
-    "gulp-watch": "^4.1.0"
+    "gulp-watch": "^4.1.0",
+    "gulp-concat": "^2.4.3"
   }
 }

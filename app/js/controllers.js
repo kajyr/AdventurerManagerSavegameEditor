@@ -1,7 +1,3 @@
-var app;
-
-app = angular.module("myNoteApp", []);
-
 app.controller("loaderController", function($scope) {
   var fs, getUserHome, save_paths;
   fs = require('fs');
@@ -21,13 +17,14 @@ app.controller("loaderController", function($scope) {
     return fs.readFile(path, 'utf8', function(err, data) {
       var savegame;
       if (err) {
-        return $output.html(err.message);
+        return alert(err.message);
       }
       if (data === '') {
-        return $main.html('<p>This savegame seems empty</p>');
+        return alert('This savegame seems empty');
       }
       data = data.replace(/\n/g, ' ');
-      return savegame = JSON.parse(data);
+      savegame = JSON.parse(data);
+      return console.log(savegame);
     });
   };
 });

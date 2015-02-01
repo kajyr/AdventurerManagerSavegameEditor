@@ -1,16 +1,23 @@
 var gulp = require('gulp');
 var coffee = require('gulp-coffee');
 var compass = require('gulp-compass');
+var concat = require('gulp-concat');
 var gutil = require('gulp-util');
 var watch = require('gulp-watch');
 
 var files = {
-	Application: './Application/*.coffee'
+	Application: './Application/*.coffee',
+	Controllers: './Controllers/*.coffee'
 }
 
 gulp.task('coffee', function() {
 	gulp.src(files.Application)
 	.pipe(coffee({bare: true}).on('error', gutil.log))
+	.pipe(gulp.dest('./app/js'));
+
+	gulp.src(files.Controllers)
+	.pipe(coffee({bare: true}))
+	.pipe(concat('controllers.js'))
 	.pipe(gulp.dest('./app/js'))
 });
 
@@ -39,4 +46,5 @@ gulp.task('bower', function() {
 
 gulp.task('w', function () {
     gulp.watch(files.Application, ['coffee']);
+    gulp.watch(files.Controllers, ['coffee']);
 });
