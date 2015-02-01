@@ -20,10 +20,15 @@ gulp.task('sass', function() {
 	.pipe(gulp.dest('app/assets/temp'));
 });
 
-gulp.task('foundation', function() {
+gulp.task('bower', function() {
 	gulp.src('./bower_components/foundation/css/*.css')
 	.pipe(gulp.dest('./app/css/'));
 
 	gulp.src('./bower_components/foundation/js/foundation.min.js')
 	.pipe(gulp.dest('./app/js/'));
+
+	gulp.src('./bower_components/jquery/dist/jquery.min.js')
+	.pipe(gulp.dest('./app/js/'));
+
+
 });
